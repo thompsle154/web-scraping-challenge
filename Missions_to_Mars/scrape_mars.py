@@ -2,12 +2,18 @@
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
 import pandas as pd
+import requests
 import datetime as dt
+from webdriver_manager.chrome import ChromeDriverManager
+
+#executable_path = {'executable_path': ChromeDriverManager().install()}
+#browser = Browser("chrome", **executable_path, headless=False)
 
 
 def scrape_all():
     # Initiate headless driver for deployment
-    browser = Browser("chrome", executable_path="chromedriver", headless=True)
+executable_path = {'executable_path': ChromeDriverManager().install()}
+browser = Browser("chrome", **executable_path, headless=False)
 
     news_title, news_paragraph = mars_news(browser)
 
